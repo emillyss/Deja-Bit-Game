@@ -18,7 +18,7 @@ public class SavableObject : MonoBehaviour
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         Vector3 vel = Vector3.zero;
-        if (rb != null) vel = rb.velocity;
+        if (rb != null) vel = rb.linearVelocity;
         return new SavedState(transform.position, transform.rotation, vel, memoryWeight, gameObject.name);
     }
 
