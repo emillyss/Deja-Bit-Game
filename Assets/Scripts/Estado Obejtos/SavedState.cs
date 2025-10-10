@@ -8,14 +8,16 @@ public struct SavedState
     public Vector3 velocity;
     public int memoryWeight;
     public string objName;
+    public int instanceId; 
 
-    public SavedState(Vector3 pos, Quaternion rot, Vector3 vel, int weight, string name)
+    public SavedState(Vector3 pos, Quaternion rot, Vector3 vel, int weight, string name, int id)
     {
         position = pos;
         rotation = rot;
         velocity = vel;
         memoryWeight = weight;
         objName = name;
+        instanceId = id;
     }
 }
 
