@@ -3,15 +3,20 @@ using UnityEngine.InputSystem;
 
 public class BauScript : MonoBehaviour
 {
-    PlayerInput inputInteragir;
+    [SerializeField] int quantidadeDeEspacamento = 5;
+
     bool playerPodeInteragir = false;
     bool isAberto = false;
-
-    void Start()
+    public BoxCollider2D colliderTrigger;
+    public BoxCollider2D colliderEmpurra;
+    Rigidbody2D rb;
+    private void Start()
     {
-        inputInteragir = GetComponent<PlayerInput>();
-        inputInteragir.enabled = false;
+        rb = GetComponent<Rigidbody2D>();
+        colliderTrigger.enabled = true;
+        colliderEmpurra.enabled = false;
     }
+
     void Update()
     {
         if (playerPodeInteragir && !isAberto && Keyboard.current.eKey.wasPressedThisFrame)
@@ -25,7 +30,6 @@ public class BauScript : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerPodeInteragir = true;
-            inputInteragir.enabled = true; 
             print("eeee");
         }
     }
@@ -35,14 +39,17 @@ public class BauScript : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerPodeInteragir = false;
-            inputInteragir.enabled = false;
         }
     }
 
     void AbrirBau()
     {
         isAberto = true;
-        inputInteragir.enabled = false; 
+        Personagem.isChave = true;
+        //SelectionManager.diskCapacity += quantidadeDeEspacamento;
+        colliderTrigger.enabled = false;
+        colliderEmpurra.enabled = true;
+        rb.gravityScale = 1;
         print("bau");
     }
 }

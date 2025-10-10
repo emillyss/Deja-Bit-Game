@@ -3,18 +3,12 @@ using UnityEngine.InputSystem;
 
 public class BotaoScript : MonoBehaviour
 {
-    PlayerInput inputInteragir;
     bool playerPodeInteragir = false;
     bool isPressionado = false;
 
-    void Start()
-    {
-        inputInteragir = GetComponent<PlayerInput>();
-        inputInteragir.enabled = false;
-    }
     void Update()
     {
-        if (playerPodeInteragir && !isPressionado && Keyboard.current.eKey.wasPressedThisFrame)
+        if (playerPodeInteragir && !isPressionado && Keyboard.current.eKey.wasPressedThisFrame && Personagem.isChave)
         {
             PressionarBotao();
         }
@@ -25,7 +19,6 @@ public class BotaoScript : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerPodeInteragir = true;
-            inputInteragir.enabled = true;
             print("eeee");
         }
     }
@@ -35,14 +28,12 @@ public class BotaoScript : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerPodeInteragir = false;
-            inputInteragir.enabled = false;
         }
     }
 
     void PressionarBotao()
     {
         isPressionado = true;
-        inputInteragir.enabled = false;
         print("botão");
         // aplicações ações do botão
     }

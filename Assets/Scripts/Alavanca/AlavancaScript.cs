@@ -3,14 +3,8 @@ using UnityEngine.InputSystem;
 
 public class AlavancaScript : MonoBehaviour
 {
-    PlayerInput inputInteragir;
     bool playerPodeInteragir = false;
 
-    void Start()
-    {
-        inputInteragir = GetComponent<PlayerInput>();
-        inputInteragir.enabled = false;
-    }
     void Update()
     {
         if (playerPodeInteragir && !PlataformaScript.isAlavancaAtivada && Keyboard.current.eKey.wasPressedThisFrame)
@@ -24,7 +18,6 @@ public class AlavancaScript : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerPodeInteragir = true;
-            inputInteragir.enabled = true;
             print("eeee");
         }
     }
@@ -34,14 +27,12 @@ public class AlavancaScript : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerPodeInteragir = false;
-            inputInteragir.enabled = false;
         }
     }
 
     void AlavancaAtiva()
     {
         PlataformaScript.isAlavancaAtivada = true;
-        inputInteragir.enabled = false;
         print("alavanca");
     }
 }

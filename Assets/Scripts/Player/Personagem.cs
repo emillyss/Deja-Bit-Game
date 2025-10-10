@@ -6,6 +6,8 @@ public class Personagem : MonoBehaviour
 	Rigidbody2D _rb;
 	float Speed = 250;
 	Vector2 Dir;
+
+	static public bool isChave = false;
 	
 	void Awake()
 	{

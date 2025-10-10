@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PortaScript : MonoBehaviour
 {
-    [SerializeField] int quantidadeInimigos = 1;
+    static public int quantidadeInimigosVivos = 1;
     BoxCollider2D porta;
     void Start()
     {
@@ -11,7 +11,7 @@ public class PortaScript : MonoBehaviour
 
     void Update()
     {
-        if(quantidadeInimigos == 0)
+        if(quantidadeInimigosVivos == 0)
         {
             //aplicar animação de porta abrindo
             porta.enabled = false;

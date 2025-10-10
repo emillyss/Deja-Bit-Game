@@ -5,11 +5,11 @@ using static UnityEngine.GraphicsBuffer;
 public class PlataformaScript : MonoBehaviour
 {
     [SerializeField] float speed = 5f;
-    [SerializeField] float waitTime = 5f;
+    [SerializeField] float waitTime = 2f;
     [SerializeField] float moveRadius = 10f;
     [SerializeField] float deslocamento = 2f;
 
-    static public bool isAlavancaAtivada = true;
+    static public bool isAlavancaAtivada = false;
     Vector3 positionAtual;
     Vector3 target;
     bool isMovimentando = false;
