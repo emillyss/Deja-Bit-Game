@@ -1,25 +1,48 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BauScript : MonoBehaviour
 {
-    BoxCollider2D areaInteracao;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    PlayerInput inputInteragir;
+    bool playerPodeInteragir = false;
+    bool isAberto = false;
+
     void Start()
     {
-        areaInteracao = GetComponent<BoxCollider2D>();
+        inputInteragir = GetComponent<PlayerInput>();
+        inputInteragir.enabled = false;
     }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        if (playerPodeInteragir && !isAberto && Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            AbrirBau();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
-
+            playerPodeInteragir = true;
+            inputInteragir.enabled = true; 
+            print("eeee");
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            playerPodeInteragir = false;
+            inputInteragir.enabled = false;
+        }
+    }
+
+    void AbrirBau()
+    {
+        isAberto = true;
+        inputInteragir.enabled = false; 
+        print("bau");
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InimigoScript : MonoBehaviour
 {
@@ -8,38 +9,40 @@ public class InimigoScript : MonoBehaviour
     [SerializeField] BoxCollider2D areaCollider;
 
     Rigidbody2D rb;
-    Vector3 startPosition;
     Vector3 target;
     bool isMovimentando = false;
+    bool isPerigo = false;
     float waitTimer = 0f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        startPosition = transform.position;
         RandomChoice();
     }
 
     void Update()
     {
-        if (isMovimentando)
+        if (!isPerigo)
         {
-            float step = speed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, target, step);
+            if (isMovimentando)
+            {
+                float step = speed * Time.deltaTime;
+                transform.position = Vector3.MoveTowards(transform.position, target, step);
 
-            if (Vector3.Distance(transform.position, target) < 0.1f)
-            {
-                isMovimentando = false;
-                waitTimer = waitTime;
+                if (Vector3.Distance(transform.position, target) < 0.1f)
+                {
+                    isMovimentando = false;
+                    waitTimer = waitTime;
+                }
             }
-        }
-        else
-        {
-            waitTimer -= Time.deltaTime;
-            if (waitTimer <= 0f)
+            else
             {
-                RandomChoice();
-                isMovimentando = true;
+                waitTimer -= Time.deltaTime;
+                if (waitTimer <= 0f)
+                {
+                    RandomChoice();
+                    isMovimentando = true;
+                }
             }
         }
     }
@@ -52,5 +55,19 @@ public class InimigoScript : MonoBehaviour
         float randomY = Random.Range(bounds.min.y, bounds.max.y);
 
         target = new Vector3(randomX, randomY, 0f);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //if (collision.CompareTag("Player"))
+        //{
+        //    SceneManager.LoadScene(0);
+        //}
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Player") && collision.gameObject.layer == LayerMask.NameToLayer("Matavel"))
+        {
+            isPerigo = true;
+            collision.transform.parent.position += Vector3.down * speed * Time.deltaTime;
+            print("Achou");
+        }
     }
 }
