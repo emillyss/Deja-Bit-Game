@@ -429,7 +429,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1005311229}
   - component: {fileID: 1005311230}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -597,6 +597,56 @@ PolygonCollider2D:
       - {x: 4.5979824, y: -1.2902973}
       - {x: 4.5629444, y: 1.8926845}
   m_UseDelaunayMesh: 0
+--- !u!1 &1473139876
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1473139877}
+  - component: {fileID: 1473139878}
+  m_Layer: 0
+  m_Name: SaveSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1473139877
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473139876}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1473139878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473139876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4b7ead42cfe512c84892baac4fed0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelectionManager
+  toggleKey: 114
+  savableLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  diskCapacity: 20
+  savedStates: []
 --- !u!1 &1546980443
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,7 +748,7 @@ GameObject:
   - component: {fileID: 1964633894}
   - component: {fileID: 1964633893}
   - component: {fileID: 1964633892}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Caixa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -718,6 +768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SavableObject
   memoryWeight: 10
+  outlineObject: {fileID: 0}
 --- !u!50 &1964633893
 Rigidbody2D:
   serializedVersion: 5
@@ -862,7 +913,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2107420787}
   - component: {fileID: 2107420788}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1052,3 +1103,4 @@ SceneRoots:
   - {fileID: 2120786841}
   - {fileID: 1964633894}
   - {fileID: 2016914995}
+  - {fileID: 1473139877}
