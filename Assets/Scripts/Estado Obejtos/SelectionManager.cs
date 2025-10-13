@@ -208,6 +208,7 @@ public class SelectionManager : MonoBehaviour
 
         savedStates.Add(state);
         Debug.Log($"Saved '{state.objName}' id={state.instanceId} at {state.position}. Used: {used + state.memoryWeight}/{diskCapacity} MB");
+        Debug.Log($"Saved. total savedStates = {savedStates.Count}");
 
         // atualiza painel (se estiver aberto)
         if (selectionMode) UpdateSavedPanel();
@@ -227,6 +228,7 @@ public class SelectionManager : MonoBehaviour
 
     void UpdateSavedPanel()
     {
+    	Debug.Log($"UpdateSavedPanel: savedStates.Count = {savedStates.Count}");
         if (savedContent == null || savedSlotPrefab == null) return;
 
         ClearSavedPanel();
@@ -251,7 +253,8 @@ public class SelectionManager : MonoBehaviour
                     icon = target != null ? target.GetIcon() : null;
                 }
 
-                slot.Setup(label, () => { RestoreSavedState(idx); }, icon);
+                slot.Setup(label, () => { RestoreSavedState(idx); }, icon, () => { DeleteSavedState(idx); });
+
             }
             else
             {
@@ -269,7 +272,22 @@ public class SelectionManager : MonoBehaviour
         }
     }
 
+	// ---------- Deleta um savedState por índice e atualiza o painel
+	public void DeleteSavedState(int index)
+	{
+	    if (index < 0 || index >= savedStates.Count)
+	    {
+		Debug.LogWarning("DeleteSavedState: invalid index.");
+		return;
+	    }
 
+	    var removed = savedStates[index];
+	    savedStates.RemoveAt(index);
+	    Debug.Log($"Deleted saved state '{removed.objName}' (instanceId {removed.instanceId}).");
+
+	    // atualiza o painel (recria os slots e ajusta indices)
+	    UpdateSavedPanel();
+	}
 
     void ClearHighlight()
     {

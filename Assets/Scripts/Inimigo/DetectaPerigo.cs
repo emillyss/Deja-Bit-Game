@@ -21,7 +21,7 @@ public class DetectaPerigo : MonoBehaviour
         Collider2D[] objetosDetectados = Physics2D.OverlapCircleAll(transform.position, circleRadius, detectableLayers);
 
         bool playerDetected = false;
-        bool matávelDetected = false;
+        bool matavelDetected = false;
         GameObject playerObject = null;
 
         foreach (Collider2D obj in objetosDetectados)
@@ -36,11 +36,11 @@ public class DetectaPerigo : MonoBehaviour
 
             if (obj.gameObject.layer == LayerMask.NameToLayer("Matavel"))
             {
-                matávelDetected = true;
+                matavelDetected = true;
             }
         }
 
-        if (playerDetected && matávelDetected)
+        if (playerDetected && matavelDetected)
         {
             if (!InimigoScript.isPerigo) 
             {
