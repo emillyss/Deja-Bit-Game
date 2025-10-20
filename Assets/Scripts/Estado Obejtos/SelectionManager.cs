@@ -3,24 +3,34 @@ using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class SelectionManager : MonoBehaviour
 {
     public Key toggleKey = Key.R;
     public LayerMask savableLayer;
-    static public int diskCapacity = 20;
+    static public int diskCapacity = 100;
     public List<SavedState> savedStates = new List<SavedState>();
+
+    // UI references
     public Image viewportBackground;
+    public TextMeshProUGUI emptyMessage;
+
+    // padding.x = horizontal padding total (left+right) / 2 per lado aproximado
+    // padding.y = vertical padding (usado como top and bottom)
+    public Vector2 viewportPadding = new Vector2(12f, 12f);
+    public float viewportMinWidth = 120f;
+    public float viewportMaxWidth = 400f;
 
     bool selectionMode = false;
     SavableObject lastHighlighted = null;
 
     // novo: mapa runtime de instanceId -> SavableObject
     Dictionary<int, SavableObject> instanceMap = new Dictionary<int, SavableObject>();
-    
-    public Transform savedContent;       
-    public GameObject savedSlotPrefab;  
+
+    public Transform savedContent;
+    public GameObject savedSlotPrefab;
 
     // runtime
     List<GameObject> currentSlots = new List<GameObject>();
@@ -30,7 +40,7 @@ public class SelectionManager : MonoBehaviour
     {
         // preenche o mapa com os SavableObjects atuais na cena
         RefreshInstanceMap();
-        
+
         // garantir estado inicial: fundo desligado
         if (viewportBackground != null) viewportBackground.gameObject.SetActive(false);
     }
@@ -97,17 +107,18 @@ public class SelectionManager : MonoBehaviour
         if (!selectionMode) ClearHighlight();
         Debug.Log("Selection mode: " + (selectionMode ? "ON" : "OFF"));
 
-        // Atualiza visibilidade/itens do painel quando muda o modo seleção
         if (selectionMode)
         {
+            // Ao abrir: ative o background ANTES de construir a UI para que os cálculos de layout sejam corretos
+            SetViewportBackground(true);
             UpdateSavedPanel();
         }
         else
         {
+            // Ao fechar: limpe o painel e então desligue o background
             ClearSavedPanel();
+            SetViewportBackground(false);
         }
-        
-        SetViewportBackground(selectionMode);
     }
 
     void CancelSelectionMode()
@@ -224,70 +235,88 @@ public class SelectionManager : MonoBehaviour
             if (currentSlots[i] != null) Destroy(currentSlots[i]);
         }
         currentSlots.Clear();
+
+        // mostra a mensagem de inventário vazio
+        if (emptyMessage != null) emptyMessage.gameObject.SetActive(true);
+
+        // ajusta o background (se ativo)
+        AdjustViewportBackground();
     }
 
     void UpdateSavedPanel()
     {
-    	Debug.Log($"UpdateSavedPanel: savedStates.Count = {savedStates.Count}");
-        if (savedContent == null || savedSlotPrefab == null) return;
+        Debug.Log($"UpdateSavedPanel: savedStates.Count = {savedStates.Count}");
 
+        if (savedContent == null) return; // não precisa exigir prefab para atualizar mensagem/size
+
+        // limpa o painel visual (vai recriar)
         ClearSavedPanel();
 
-        for (int i = 0; i < savedStates.Count; i++)
+        // mostra ou esconde a mensagem de inventário vazio
+        if (emptyMessage != null)
+            emptyMessage.gameObject.SetActive(savedStates.Count == 0);
+
+        // instancia slots
+        if (savedSlotPrefab != null)
         {
-            var state = savedStates[i];
-            GameObject go = Instantiate(savedSlotPrefab, savedContent, false);
-            currentSlots.Add(go);
-
-            var slot = go.GetComponent<SavedSlot>();
-            if (slot != null)
+            for (int i = 0; i < savedStates.Count; i++)
             {
-                string label = $"{state.objName} - {state.memoryWeight} MB";
-                int idx = i; // capture o índice local para o callback
+                var state = savedStates[i];
+                GameObject go = Instantiate(savedSlotPrefab, savedContent, false);
+                currentSlots.Add(go);
 
-                // tenta obter ícone via instanceMap (se existir), senão passa null
-                Sprite icon = null;
-                SavableObject target = null;
-                if (state.instanceId != 0 && instanceMap.TryGetValue(state.instanceId, out target))
+                var slot = go.GetComponent<SavedSlot>();
+                if (slot != null)
                 {
-                    icon = target != null ? target.GetIcon() : null;
+                    string label = $"{state.objName} - {state.memoryWeight} MB";
+                    int idx = i; // capture o índice local para o callback
+
+                    // tenta obter ícone via instanceMap (se existir), senão passa null
+                    Sprite icon = null;
+                    SavableObject target = null;
+                    if (state.instanceId != 0 && instanceMap.TryGetValue(state.instanceId, out target))
+                    {
+                        icon = target != null ? target.GetIcon() : null;
+                    }
+
+                    slot.Setup(label, () => { RestoreSavedState(idx); }, icon, () => { DeleteSavedState(idx); });
                 }
-
-                slot.Setup(label, () => { RestoreSavedState(idx); }, icon, () => { DeleteSavedState(idx); });
-
-            }
-            else
-            {
-                // fallback simples: se prefab não tiver SavedSlot, tenta setar Text/Button
-                var txt = go.GetComponentInChildren<UnityEngine.UI.Text>();
-                if (txt != null) txt.text = $"{state.objName} - {state.memoryWeight} MB";
-                var btn = go.GetComponentInChildren<UnityEngine.UI.Button>();
-                if (btn != null)
+                else
                 {
-                    int idx = i;
-                    btn.onClick.RemoveAllListeners();
-                    btn.onClick.AddListener(() => RestoreSavedState(idx));
+                    // fallback simples: se prefab não tiver SavedSlot, tenta setar Text/Button
+                    var txt = go.GetComponentInChildren<UnityEngine.UI.Text>();
+                    if (txt != null) txt.text = $"{state.objName} - {state.memoryWeight} MB";
+                    var btn = go.GetComponentInChildren<UnityEngine.UI.Button>();
+                    if (btn != null)
+                    {
+                        int idx = i;
+                        btn.onClick.RemoveAllListeners();
+                        btn.onClick.AddListener(() => RestoreSavedState(idx));
+                    }
                 }
             }
         }
+
+        // ajusta tamanho do background com base no conteúdo
+        AdjustViewportBackground();
     }
 
-	// ---------- Deleta um savedState por índice e atualiza o painel
-	public void DeleteSavedState(int index)
-	{
-	    if (index < 0 || index >= savedStates.Count)
-	    {
-		Debug.LogWarning("DeleteSavedState: invalid index.");
-		return;
-	    }
+    // ---------- Deleta um savedState por índice e atualiza o painel
+    public void DeleteSavedState(int index)
+    {
+        if (index < 0 || index >= savedStates.Count)
+        {
+            Debug.LogWarning("DeleteSavedState: invalid index.");
+            return;
+        }
 
-	    var removed = savedStates[index];
-	    savedStates.RemoveAt(index);
-	    Debug.Log($"Deleted saved state '{removed.objName}' (instanceId {removed.instanceId}).");
+        var removed = savedStates[index];
+        savedStates.RemoveAt(index);
+        Debug.Log($"Deleted saved state '{removed.objName}' (instanceId {removed.instanceId}).");
 
-	    // atualiza o painel (recria os slots e ajusta indices)
-	    UpdateSavedPanel();
-	}
+        // atualiza o painel (recria os slots e ajusta indices)
+        UpdateSavedPanel();
+    }
 
     void ClearHighlight()
     {
@@ -340,5 +369,60 @@ public class SelectionManager : MonoBehaviour
         Debug.LogWarning($"RestoreSavedState: target for '{s.objName}' not found (instanceId {s.instanceId}).");
         return false;
     }
+
+    void AdjustViewportBackground()
+    {
+        if (viewportBackground == null || savedContent == null) return;
+
+        // só ajusta se o background estiver ativo na hierarquia
+        if (!viewportBackground.gameObject.activeInHierarchy) return;
+
+        RectTransform bgRT = viewportBackground.rectTransform;
+        RectTransform contentRT = savedContent as RectTransform;
+        if (contentRT == null) return;
+
+        // força atualização imediata do layout do content (agora o background já está ativo)
+        LayoutRebuilder.ForceRebuildLayoutImmediate(contentRT);
+
+        // atualiza padding do VerticalLayoutGroup (para controlar o offset topo)
+        var vlg = contentRT.GetComponent<VerticalLayoutGroup>();
+        int top = Mathf.RoundToInt(viewportPadding.y);
+        int bottom = Mathf.RoundToInt(viewportPadding.y);
+        if (vlg != null)
+        {
+            vlg.padding.top = top;
+            vlg.padding.bottom = bottom;
+        }
+
+        // rebuild novamente pra considerar o padding
+        LayoutRebuilder.ForceRebuildLayoutImmediate(contentRT);
+
+        // pega o tamanho do content
+        float contentHeight = contentRT.rect.height;
+        float contentWidth = contentRT.rect.width;
+
+        // fallback: calcula largura máxima dos filhos caso contentWidth seja muito pequeno
+        if (contentWidth <= 0.1f)
+        {
+            float maxChildW = 0f;
+            for (int i = 0; i < contentRT.childCount; i++)
+            {
+                RectTransform child = contentRT.GetChild(i) as RectTransform;
+                if (child == null) continue;
+                LayoutRebuilder.ForceRebuildLayoutImmediate(child);
+                if (child.rect.width > maxChildW) maxChildW = child.rect.width;
+            }
+            contentWidth = Mathf.Max(contentWidth, maxChildW);
+        }
+
+        // calcula novo tamanho do background com padding extra
+        float newWidth = Mathf.Clamp(contentWidth + viewportPadding.x * 2f, viewportMinWidth, viewportMaxWidth);
+        float newHeight = Mathf.Max(contentHeight + top + bottom, 1f);
+
+        // aplica tamanho no RectTransform do background (cresce a partir do pivot que você definiu)
+        bgRT.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, newWidth);
+        bgRT.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, newHeight);
+    }
+
 }
 
