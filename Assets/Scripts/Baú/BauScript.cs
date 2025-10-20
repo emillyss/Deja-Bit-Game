@@ -46,7 +46,7 @@ public class BauScript : MonoBehaviour
     {
         isAberto = true;
         Personagem.isChave = true;
-        //SelectionManager.diskCapacity += quantidadeDeEspacamento;
+        SelectionManager.diskCapacity += quantidadeDeEspacamento;
         colliderTrigger.enabled = false;
         colliderEmpurra.enabled = true;
         rb.gravityScale = 1;

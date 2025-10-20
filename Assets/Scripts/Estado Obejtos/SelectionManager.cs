@@ -9,7 +9,7 @@ public class SelectionManager : MonoBehaviour
 {
     public Key toggleKey = Key.R;
     public LayerMask savableLayer;
-    public int diskCapacity = 20;
+    static public int diskCapacity = 20;
     public List<SavedState> savedStates = new List<SavedState>();
     public Image viewportBackground;
 
