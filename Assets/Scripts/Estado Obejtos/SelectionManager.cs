@@ -16,6 +16,7 @@ public class SelectionManager : MonoBehaviour
     // UI references
     public Image viewportBackground;
     public TextMeshProUGUI emptyMessage;
+    public TextMeshProUGUI emptyMessage2;
 
     // padding.x = horizontal padding total (left+right) / 2 per lado aproximado
     // padding.y = vertical padding (usado como top and bottom)
@@ -238,6 +239,7 @@ public class SelectionManager : MonoBehaviour
 
         // mostra a mensagem de inventário vazio
         if (emptyMessage != null) emptyMessage.gameObject.SetActive(true);
+        if (emptyMessage2 != null) emptyMessage2.gameObject.SetActive(true);
 
         // ajusta o background (se ativo)
         AdjustViewportBackground();
@@ -255,6 +257,8 @@ public class SelectionManager : MonoBehaviour
         // mostra ou esconde a mensagem de inventário vazio
         if (emptyMessage != null)
             emptyMessage.gameObject.SetActive(savedStates.Count == 0);
+        if (emptyMessage2 != null)
+            emptyMessage2.gameObject.SetActive(savedStates.Count == 0);
 
         // instancia slots
         if (savedSlotPrefab != null)
