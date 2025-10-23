@@ -51,5 +51,6 @@ public class BauScript : MonoBehaviour
         colliderEmpurra.enabled = true;
         rb.gravityScale = 1;
         print("bau");
+        MensagensScript.isLetal = true;
     }
 }

@@ -48,20 +48,15 @@ public class InimigoScript : MonoBehaviour
     {
         Bounds bounds = areaCollider.bounds;
         Vector3 candidateTarget;
-        int maxAttempts = 50;
-        int attempts = 0;
 
         do
         {
             float randomX = Random.Range(bounds.min.x, bounds.max.x);
             float randomY = Random.Range(bounds.min.y, bounds.max.y);
             candidateTarget = new Vector3(randomX, randomY, 0f);
-            attempts++;
-
-            if (attempts >= maxAttempts)
+            if (areaProibida.bounds.Contains(candidateTarget))
             {
-                Debug.LogWarning("Muitas tentativas para encontrar ponto válido");
-                break;
+                MensagensScript.isPerigo = true;
             }
         }
         while (areaProibida.gameObject.activeInHierarchy && areaProibida.bounds.Contains(candidateTarget));
