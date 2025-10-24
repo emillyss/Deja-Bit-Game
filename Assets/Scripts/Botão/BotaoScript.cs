@@ -14,11 +14,21 @@ public class BotaoScript : MonoBehaviour
     //    }
     //}
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Caixa"))
         {
-            PressionarBotao();
+            isPressionado = true;
+            print("botão");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Caixa"))
+        {
+            isPressionado = false;
+            print("saiu");
         }
     }
 

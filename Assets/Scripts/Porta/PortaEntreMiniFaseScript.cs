@@ -21,6 +21,10 @@ public class PortaEntreMiniFaseScript : MonoBehaviour
         {
             bloqueada.enabled = false;
         }
+        else
+        {
+            bloqueada.enabled = true;
+        }
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
