@@ -6,6 +6,7 @@ public class BloquearAvancoCaixa : MonoBehaviour
     {
         if (collision.CompareTag("Caixa"))
         {
+            AudioManager.instance.PlayCaixaCaindo();
             Transform pai = collision.transform.parent;
 
             PolygonCollider2D collider2D = pai.GetComponentInChildren<PolygonCollider2D>();

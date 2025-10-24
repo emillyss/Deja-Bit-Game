@@ -17,6 +17,7 @@ public class AlavancaScript : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            AudioManager.instance.PlayAlavanca();
             playerPodeInteragir = true;
             print("eeee");
         }
@@ -26,6 +27,7 @@ public class AlavancaScript : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            AudioManager.instance.PlayAlavanca();
             playerPodeInteragir = false;
         }
     }

@@ -19,6 +19,7 @@ public class PortaEntreMiniFaseScript : MonoBehaviour
     {
         if (BotaoScript.isPressionado)
         {
+            AudioManager.instance.PlayPorta();
             bloqueada.enabled = false;
         }
         else

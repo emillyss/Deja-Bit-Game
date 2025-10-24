@@ -12,6 +12,9 @@ public class MensagensScript : MonoBehaviour
     [SerializeField] TextMeshProUGUI mensagemEspacamento;
     [SerializeField] TextMeshProUGUI mensagemObjetosLetais;
     [SerializeField] TextMeshProUGUI mensagemDetectarPerigo;
+    [SerializeField] TextMeshProUGUI mensagemItensRecebidos;
+    [SerializeField] TextMeshProUGUI mensagemMorteInimigo;
+    [SerializeField] TextMeshProUGUI mensagemNovoEstado;
     [SerializeField] float tempoDeEspera = 5f;
 
     bool isInicio = false;
@@ -19,6 +22,9 @@ public class MensagensScript : MonoBehaviour
     public static bool isEspacamento = false;
     public static bool isLetal = false;
     public static bool isPerigo = false;
+    public static bool isItens = false;
+    public static bool isMorto = false;
+    public static bool isNovoEstado = false;
     float tempoDeTela = 0f;
     float tempoDeEsperaInicial = 0f;
     float waitTimer = 0f;
@@ -67,6 +73,27 @@ public class MensagensScript : MonoBehaviour
             isPerigo = false;
         }
 
+        if (isNovoEstado)
+        {
+            tempoDeTela = Time.time + tempoDeEspera;
+            listaDeExibicao.Add(mensagemNovoEstado);
+            isNovoEstado = false;
+        }
+
+        if (isMorto)
+        {
+            tempoDeTela = Time.time + tempoDeEspera;
+            listaDeExibicao.Add(mensagemMorteInimigo);
+            isMorto = false;
+        }
+
+        if (isItens)
+        {
+            tempoDeTela = Time.time + tempoDeEspera;
+            listaDeExibicao.Add(mensagemItensRecebidos);
+            isItens = false;
+        }
+
         if (!isExibindo)
         {
             if (listaDeExibicao.Count > 0)
@@ -74,13 +101,14 @@ public class MensagensScript : MonoBehaviour
                 tempoDeTela = Time.time + tempoDeEspera;
                 isExibindo = true;
                 waitTimer = tempoDeEspera;
+                AudioManager.instance.PlayCaixaDeTexto();
                 listaDeExibicao[0].gameObject.SetActive(true);
             }
         }
         else
         {
             waitTimer -= Time.deltaTime;
-            if(waitTimer <= 0f)
+            if (waitTimer <= 0f)
             {
                 listaDeExibicao[0].gameObject.SetActive(false);
                 listaDeExibicao.RemoveAt(0);

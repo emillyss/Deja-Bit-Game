@@ -19,6 +19,7 @@ public class BotaoScript : MonoBehaviour
         if (collision.CompareTag("Caixa"))
         {
             isPressionado = true;
+            AudioManager.instance.PlayBotaoPressao();
             print("botão");
         }
     }
