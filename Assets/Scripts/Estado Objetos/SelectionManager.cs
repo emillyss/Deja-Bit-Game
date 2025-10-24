@@ -111,12 +111,16 @@ public class SelectionManager : MonoBehaviour
         if (selectionMode)
         {
             // Ao abrir: ative o background ANTES de construir a UI para que os cálculos de layout sejam corretos
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             SetViewportBackground(true);
             UpdateSavedPanel();
         }
         else
         {
             // Ao fechar: limpe o painel e então desligue o background
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
             ClearSavedPanel();
             SetViewportBackground(false);
         }

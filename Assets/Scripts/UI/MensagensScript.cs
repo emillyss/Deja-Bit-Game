@@ -17,10 +17,16 @@ public class MensagensScript : MonoBehaviour
     public static bool isLetal = false;
     public static bool isPerigo = false;
     float tempoDeTela = 0f;
+    float tempoDeEsperaInicial = 0f;
+
+    private void Start()
+    {
+        tempoDeEsperaInicial = Time.time;
+    }
 
     void Update()
     {
-        if (Time.time > tempoDeEspera*2f && !isInicio)
+        if (Time.time > tempoDeEsperaInicial * 2f && !isInicio)
         {
             tempoDeTela = Time.time + tempoDeEspera;
             isInicio = true;

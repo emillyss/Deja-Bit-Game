@@ -1,20 +1,25 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PortaScript : MonoBehaviour
 {
+    [SerializeField] BoxCollider2D bloqueio;
     static public int quantidadeInimigosVivos = 1;
-    BoxCollider2D porta;
-    void Start()
-    {
-        porta = GetComponent<BoxCollider2D>();
-    }
 
     void Update()
     {
         if(quantidadeInimigosVivos == 0)
         {
             //aplicar animação de porta abrindo
-            porta.enabled = false;
+            bloqueio.enabled = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            SceneManager.LoadScene("FimDeJogo");
         }
     }
 }
