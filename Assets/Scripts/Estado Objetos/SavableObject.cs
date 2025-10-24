@@ -77,6 +77,14 @@ public class SavableObject : MonoBehaviour
         transform.position = s.position;
         transform.rotation = s.rotation;
 
+        AlavancaScript lever = GetComponent<AlavancaScript>();
+        if (lever == null) lever = GetComponentInChildren<AlavancaScript>();
+        if (lever == null) lever = GetComponentInParent<AlavancaScript>();
+        if (lever != null)
+        {
+            lever.SetActivatedFromRestore();
+        }
+
         if (rb != null)
         {
             rb.linearVelocity = s.velocity;

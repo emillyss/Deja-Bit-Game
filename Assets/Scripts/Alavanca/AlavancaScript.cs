@@ -7,7 +7,7 @@ public class AlavancaScript : MonoBehaviour
 
     void Update()
     {
-        if (playerPodeInteragir && !PlataformaScript.isAlavancaAtivada && Keyboard.current.eKey.wasPressedThisFrame)
+        if (playerPodeInteragir && !PlataformaScript.isAlavancaAtivada && Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
         {
             AlavancaAtiva();
         }
@@ -35,4 +35,10 @@ public class AlavancaScript : MonoBehaviour
         PlataformaScript.isAlavancaAtivada = true;
         print("alavanca");
     }
+
+    public void SetActivatedFromRestore()
+    {
+        PlataformaScript.isAlavancaAtivada = true;
+    }
 }
+
