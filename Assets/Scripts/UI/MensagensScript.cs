@@ -1,6 +1,9 @@
+using NUnit.Framework;
+using System.Collections.Generic;
+using System.Threading;
 using TMPro;
-using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MensagensScript : MonoBehaviour
 {
@@ -18,6 +21,9 @@ public class MensagensScript : MonoBehaviour
     public static bool isPerigo = false;
     float tempoDeTela = 0f;
     float tempoDeEsperaInicial = 0f;
+    float waitTimer = 0f;
+    bool isExibindo = false;
+    List<TextMeshProUGUI> listaDeExibicao = new List<TextMeshProUGUI>();
 
     private void Start()
     {
@@ -26,73 +32,59 @@ public class MensagensScript : MonoBehaviour
 
     void Update()
     {
-        if (Time.time > tempoDeEsperaInicial * 2f && !isInicio)
+        if (Time.time > tempoDeEsperaInicial + 10f && !isInicio)
         {
             tempoDeTela = Time.time + tempoDeEspera;
             isInicio = true;
-            mensagemIntrodutoria.gameObject.SetActive(true);
-        }
-        else
-        {
-            if (Time.time >= tempoDeTela)
-            {
-                mensagemIntrodutoria.gameObject.SetActive(false);
-            }
+            listaDeExibicao.Add(mensagemIntrodutoria);
         }
 
         if (isRebobinar)
         {
             tempoDeTela = Time.time + tempoDeEspera;
-            mensagemRebobinar.gameObject.SetActive(true);
+            listaDeExibicao.Add(mensagemRebobinar);
             isRebobinar = false;
-        }
-        else
-        {
-            if (Time.time >= tempoDeTela)
-            {
-                mensagemRebobinar.gameObject.SetActive(false);
-            }
         }
 
         if (isEspacamento)
         {
             tempoDeTela = Time.time + tempoDeEspera;
-            mensagemEspacamento.gameObject.SetActive(true);
+            listaDeExibicao.Add(mensagemEspacamento);
             isEspacamento = false;
-        }
-        else
-        {
-            if (Time.time >= tempoDeTela)
-            {
-                mensagemEspacamento.gameObject.SetActive(false);
-            }
         }
 
         if (isLetal)
         {
             tempoDeTela = Time.time + tempoDeEspera;
-            mensagemObjetosLetais.gameObject.SetActive(true);
+            listaDeExibicao.Add(mensagemObjetosLetais);
             isLetal = false;
-        }
-        else
-        {
-            if (Time.time >= tempoDeTela)
-            {
-                mensagemObjetosLetais.gameObject.SetActive(false);
-            }
         }
 
         if (isPerigo)
         {
             tempoDeTela = Time.time + tempoDeEspera;
-            mensagemDetectarPerigo.gameObject.SetActive(true);
+            listaDeExibicao.Add(mensagemDetectarPerigo);
             isPerigo = false;
+        }
+
+        if (!isExibindo)
+        {
+            if (listaDeExibicao.Count > 0)
+            {
+                tempoDeTela = Time.time + tempoDeEspera;
+                isExibindo = true;
+                waitTimer = tempoDeEspera;
+                listaDeExibicao[0].gameObject.SetActive(true);
+            }
         }
         else
         {
-            if (Time.time >= tempoDeTela)
+            waitTimer -= Time.deltaTime;
+            if(waitTimer <= 0f)
             {
-                mensagemDetectarPerigo.gameObject.SetActive(false);
+                listaDeExibicao[0].gameObject.SetActive(false);
+                listaDeExibicao.RemoveAt(0);
+                isExibindo = false;
             }
         }
     }
