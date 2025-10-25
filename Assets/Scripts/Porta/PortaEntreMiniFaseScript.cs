@@ -9,7 +9,7 @@ public class PortaEntreMiniFaseScript : MonoBehaviour
     [SerializeField] GameObject bloquearAcesso;
     [SerializeField] BoxCollider2D bloqueada;
     [SerializeField] BoxCollider2D portaAcesso;
-
+    bool isSom;
     void Start()
     {
         bloqueada = GetComponent<BoxCollider2D>();
@@ -19,7 +19,17 @@ public class PortaEntreMiniFaseScript : MonoBehaviour
     {
         if (BotaoScript.isPressionado)
         {
+            if (!isSom)
+            {
+                AudioManager.instance.PlayPorta();
+                isSom = true;
+            }
             bloqueada.enabled = false;
+        }
+        else
+        {
+            bloqueada.enabled = true;
+            isSom = false;
         }
     }
     void OnTriggerEnter2D(Collider2D collision)

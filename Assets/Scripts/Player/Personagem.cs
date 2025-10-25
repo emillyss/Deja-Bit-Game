@@ -7,6 +7,7 @@ public class Personagem : MonoBehaviour
 	float Speed = 250;
 	Vector2 Dir;
 
+	public static bool isVulneravel = false;
 	static public bool isChave = false;
 	
 	void Awake()

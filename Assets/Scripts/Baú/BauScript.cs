@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class BauScript : MonoBehaviour
 {
-    [SerializeField] int quantidadeDeEspacamento = 5;
+    [SerializeField] int quantidadeDeEspacamento = 20;
 
     bool playerPodeInteragir = false;
     bool isAberto = false;
@@ -44,6 +44,7 @@ public class BauScript : MonoBehaviour
 
     void AbrirBau()
     {
+        AudioManager.instance.PlayBau();
         isAberto = true;
         Personagem.isChave = true;
         SelectionManager.diskCapacity += quantidadeDeEspacamento;
@@ -52,5 +53,6 @@ public class BauScript : MonoBehaviour
         rb.gravityScale = 1;
         print("bau");
         MensagensScript.isLetal = true;
+        MensagensScript.isItens = true;
     }
 }

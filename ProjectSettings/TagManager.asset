@@ -46,8 +46,8 @@ TagManager:
   - name: Objetos
     uniqueID: 1617924393
     locked: 0
-  - name: Particulas
-    uniqueID: 3892932793
+  - name: Personagem
+    uniqueID: 2299956519
     locked: 0
   m_RenderingLayers:
   - Default

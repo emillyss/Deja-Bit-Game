@@ -10,16 +10,14 @@ public class SelectionManager : MonoBehaviour
 {
     public Key toggleKey = Key.R;
     public LayerMask savableLayer;
-    static public int diskCapacity = 100;
+    static public int diskCapacity = 20;
     public List<SavedState> savedStates = new List<SavedState>();
+    public DiskUI diskUI;
 
-    // UI references
     public Image viewportBackground;
     public TextMeshProUGUI emptyMessage;
     public TextMeshProUGUI emptyMessage2;
 
-    // padding.x = horizontal padding total (left+right) / 2 per lado aproximado
-    // padding.y = vertical padding (usado como top and bottom)
     public Vector2 viewportPadding = new Vector2(12f, 12f);
     public float viewportMinWidth = 120f;
     public float viewportMaxWidth = 400f;
@@ -27,13 +25,12 @@ public class SelectionManager : MonoBehaviour
     bool selectionMode = false;
     SavableObject lastHighlighted = null;
 
-    // novo: mapa runtime de instanceId -> SavableObject
     Dictionary<int, SavableObject> instanceMap = new Dictionary<int, SavableObject>();
 
     public Transform savedContent;
     public GameObject savedSlotPrefab;
 
-    // runtime
+
     List<GameObject> currentSlots = new List<GameObject>();
 
 
@@ -44,6 +41,9 @@ public class SelectionManager : MonoBehaviour
 
         // garantir estado inicial: fundo desligado
         if (viewportBackground != null) viewportBackground.gameObject.SetActive(false);
+
+        // inicializa o Disk UI com valores atuais (pode ser 0)
+        UpdateDiskUI();
     }
 
     // público útil caso queira atualizar (ex.: instância dinâmica)
@@ -114,6 +114,10 @@ public class SelectionManager : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             SetViewportBackground(true);
+
+            // garante que o DiskUI reflita o estado atual ao abrir
+            UpdateDiskUI();
+
             UpdateSavedPanel();
         }
         else
@@ -223,6 +227,10 @@ public class SelectionManager : MonoBehaviour
         }
 
         savedStates.Add(state);
+
+        // atualiza DiskUI após alterar a lista
+        UpdateDiskUI();
+
         Debug.Log($"Saved '{state.objName}' id={state.instanceId} at {state.position}. Used: {used + state.memoryWeight}/{diskCapacity} MB");
         Debug.Log($"Saved. total savedStates = {savedStates.Count}");
 
@@ -320,6 +328,10 @@ public class SelectionManager : MonoBehaviour
 
         var removed = savedStates[index];
         savedStates.RemoveAt(index);
+
+        // atualiza DiskUI após remover
+        UpdateDiskUI();
+
         Debug.Log($"Deleted saved state '{removed.objName}' (instanceId {removed.instanceId}).");
 
         // atualiza o painel (recria os slots e ajusta indices)
@@ -335,7 +347,7 @@ public class SelectionManager : MonoBehaviour
         }
     }
 
-    // ---------- NOVO: restaurar um savedState por índice (usa instanceId)
+    // ---------- restaurar um savedState por índice (usa instanceId)
     public bool RestoreSavedState(int index)
     {
         if (index < 0 || index >= savedStates.Count)
@@ -376,6 +388,16 @@ public class SelectionManager : MonoBehaviour
 
         Debug.LogWarning($"RestoreSavedState: target for '{s.objName}' not found (instanceId {s.instanceId}).");
         return false;
+    }
+
+    // Recalcula memória usada e atualiza o DiskUI (centraliza a lógica)
+    void UpdateDiskUI()
+    {
+        if (diskUI == null) return;
+
+        int used = 0;
+        foreach (var s in savedStates) used += s.memoryWeight;
+        diskUI.SetValues(used, diskCapacity, "MB");
     }
 
     void AdjustViewportBackground()

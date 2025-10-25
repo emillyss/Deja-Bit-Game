@@ -11,6 +11,7 @@ public class PortaScript : MonoBehaviour
         if(quantidadeInimigosVivos == 0)
         {
             //aplicar animação de porta abrindo
+            AudioManager.instance.PlayPorta();
             bloqueio.enabled = false;
         }
     }
