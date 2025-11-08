@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Bau
   - Caixa
+  - Inimigo
+  - Limite
   layers:
   - Default
   - TransparentFX

@@ -5,6 +5,12 @@ public class BotaoScript : MonoBehaviour
 {
     bool playerPodeInteragir = false;
     public static bool isPressionado = false;
+    Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     //void Update()
     //{
@@ -19,8 +25,8 @@ public class BotaoScript : MonoBehaviour
         if (collision.CompareTag("Caixa"))
         {
             isPressionado = true;
-            AudioManager.instance.PlayBotaoPressao();
             print("botão");
+            animator.SetBool("isApertado", true);
         }
     }
 
@@ -30,6 +36,7 @@ public class BotaoScript : MonoBehaviour
         {
             isPressionado = false;
             print("saiu");
+            animator.SetBool("isApertado", false);
         }
     }
 
@@ -37,6 +44,7 @@ public class BotaoScript : MonoBehaviour
     {
         if (!isPressionado)
         {
+            AudioManager.instance.PlayBotaoPressao();
             isPressionado = true;
             print("botão");
             // aplicações ações do botão

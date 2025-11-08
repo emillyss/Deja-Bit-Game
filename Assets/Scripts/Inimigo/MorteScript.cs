@@ -10,10 +10,15 @@ public class MorteScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bau"))
         {
-            MensagensScript.isMorto = true;
-            AudioManager.instance.PlayInimigoMorte();
-            PortaScript.quantidadeInimigosVivos -= 1;
-            Destroy(transform.parent.gameObject);
+            Transform pai = collision.transform.parent;
+            Rigidbody2D rb = pai.GetComponent<Rigidbody2D>();
+            if(rb.linearVelocity != Vector2.zero)
+            {
+                MensagensScript.isMorto = true;
+                AudioManager.instance.PlayInimigoMorte();
+                PortaScript.quantidadeInimigosVivos -= 1;
+                Destroy(transform.parent.gameObject);
+            }
         }
     }
 }

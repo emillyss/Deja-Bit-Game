@@ -51,6 +51,98 @@ MonoBehaviour:
     m_Bits: 384
   velocidadeFuga: 8
   areaCollider: {fileID: 0}
+--- !u!1 &5325129120020200900
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1725164653844969275}
+  - component: {fileID: 4585478626489050345}
+  - component: {fileID: 7020201594131496076}
+  m_Layer: 6
+  m_Name: Movimentacao
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1725164653844969275
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5325129120020200900}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.85, y: -0.88, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1976508673298446449}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &4585478626489050345
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5325129120020200900}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -1.1957707, y: 0.6356808}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.61931324, y: 0.61597705}
+  m_EdgeRadius: 0
+--- !u!114 &7020201594131496076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5325129120020200900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4647357c88398d44ba65699880819b46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  speed: 5
 --- !u!1 &6922425990212898488
 GameObject:
   m_ObjectHideFlags: 0
@@ -68,7 +160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1074857576724666558
 Transform:
   m_ObjectHideFlags: 0
@@ -130,8 +222,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.009479995, y: -0.0094811255}
-  m_Size: {x: 0.9740317, y: 2.0049474}
+  m_Offset: {x: 0.01483351, y: -0.6636256}
+  m_Size: {x: 3.4792635, y: 5.627898}
   m_Direction: 0
 --- !u!1 &7326357747292492522
 GameObject:
@@ -146,9 +238,10 @@ GameObject:
   - component: {fileID: 8344411691601284353}
   - component: {fileID: 4938002287289008945}
   - component: {fileID: 8126926618295108974}
+  - component: {fileID: 7639423474538768537}
   m_Layer: 6
   m_Name: Inimigo
-  m_TagString: Untagged
+  m_TagString: Inimigo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,12 +256,13 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 25.29, y: -1.63, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7352515980792256377}
   - {fileID: 6383495055493252686}
   - {fileID: 1074857576724666558}
+  - {fileID: 1725164653844969275}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1249890776672193097
@@ -255,7 +349,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &4938002287289008945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,6 +367,7 @@ MonoBehaviour:
   moveRadius: 10
   areaCollider: {fileID: 0}
   areaProibida: {fileID: 0}
+  areaMovimentacao: {fileID: 4585478626489050345}
 --- !u!114 &8126926618295108974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,6 +383,43 @@ MonoBehaviour:
   memoryWeight: 25
   icon: {fileID: 0}
   outlineObject: {fileID: 0}
+--- !u!70 &7639423474538768537
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7326357747292492522}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.0070919394, y: -0.16112065}
+  m_Size: {x: 0.7176331, y: 1.2904872}
+  m_Direction: 0
 --- !u!1 &8914033573190476897
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,9 +499,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 3.7662036, y: 2.5539062}
-      - {x: 0.041203626, y: 0.29153585}
-      - {x: -3.7793937, y: 2.6363297}
+    - - {x: 2.46556, y: -0.5332415}
+      - {x: 0.15323937, y: 0.13942623}
+      - {x: 2.4856987, y: 1.0119171}
   m_UseDelaunayMesh: 0
 --- !u!114 &3930570551603794464
 MonoBehaviour:

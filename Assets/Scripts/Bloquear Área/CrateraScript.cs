@@ -7,7 +7,7 @@ public class CrateraScript : MonoBehaviour
     {
         if(collision.CompareTag("Player") && !Personagem.isVulneravel)
         {
-            SceneManager.LoadScene("MainGame");
+            SceneManager.LoadScene("MainGame2D");
         }
     }
 }

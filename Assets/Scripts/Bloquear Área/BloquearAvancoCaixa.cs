@@ -14,8 +14,10 @@ public class BloquearAvancoCaixa : MonoBehaviour
 
             rb.linearVelocity = Vector2.zero;
             rb.angularVelocity = 0f;
+            rb.gravityScale = 0f;
+            rb.mass = 10000;
 
-            collider2D.isTrigger = true;
+            //collider2D.isTrigger = true;
         }
     }
 }
