@@ -6,6 +6,7 @@ public class BotaoClicavelScript : MonoBehaviour
     bool playerPodeInteragir = false;
     public static bool isPressionado = false;
     [SerializeField] GameObject escada;
+    [SerializeField] GameObject chao;
     [SerializeField] GameObject plataforma;
     [SerializeField] GameObject alavanca;
     [SerializeField] Transform posicaoSpawn;
@@ -47,6 +48,7 @@ public class BotaoClicavelScript : MonoBehaviour
             Destroy(plataforma);
             Destroy(alavanca);
             Instantiate(escada, posicaoSpawn.position, posicaoSpawn.rotation);
+            chao.SetActive(true);
         }
     }
 }

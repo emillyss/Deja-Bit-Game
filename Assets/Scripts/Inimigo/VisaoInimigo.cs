@@ -8,7 +8,7 @@ public class VisaoInimigo : MonoBehaviour
         //se o player estive no campo de visao
         if (collision.CompareTag("Player"))
         {
-            SceneManager.LoadScene("MainGame");
+            SceneManager.LoadScene("MainGame2D");
         }
     }
 }

@@ -14,7 +14,7 @@ public class BauScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         colliderTrigger.enabled = true;
-        colliderEmpurra.enabled = false;
+        colliderEmpurra.enabled = true;
     }
 
     void Update()
@@ -22,6 +22,10 @@ public class BauScript : MonoBehaviour
         if (playerPodeInteragir && !isAberto && Keyboard.current.eKey.wasPressedThisFrame)
         {
             AbrirBau();
+        }
+        if(colliderTrigger.enabled == true)
+        {
+            rb.linearVelocity = Vector2.zero;
         }
     }
 
@@ -51,8 +55,20 @@ public class BauScript : MonoBehaviour
         colliderTrigger.enabled = false;
         colliderEmpurra.enabled = true;
         rb.gravityScale = 1;
+        rb.mass = 20;
         print("bau");
         MensagensScript.isLetal = true;
         MensagensScript.isItens = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Inimigo") && rb.linearVelocity != Vector2.zero)
+        {
+            MensagensScript.isMorto = true;
+            AudioManager.instance.PlayInimigoMorte();
+            PortaScript.quantidadeInimigosVivos -= 1;
+            Destroy(collision.gameObject);
+        }
     }
 }
