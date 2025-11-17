@@ -58,6 +58,7 @@ public class PauseScript : MonoBehaviour
 
     public void TelaInicial()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("TelaInicial");
     }
 
