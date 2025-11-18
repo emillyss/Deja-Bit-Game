@@ -45,11 +45,23 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Cor_fundo
+    uniqueID: 816560179
+    locked: 0
+  - name: Particulas
+    uniqueID: 980827681
+    locked: 0
+  - name: Castelo
+    uniqueID: 1158131409
+    locked: 0
   - name: Objetos
     uniqueID: 1617924393
     locked: 0
   - name: Personagem
     uniqueID: 2299956519
+    locked: 0
+  - name: Menu
+    uniqueID: 3188193289
     locked: 0
   m_RenderingLayers:
   - Default

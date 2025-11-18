@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScrollingBackground : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class ScrollingBackground : MonoBehaviour
     float _offsetX;
     void Awake()
     {
-        _mat = GetComponentInChildren<SpriteRenderer>().material;
+        _mat = GetComponent<Image>().material;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
