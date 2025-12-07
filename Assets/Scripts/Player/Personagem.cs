@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class Personagem : MonoBehaviour
 {
+    [SerializeField]
+    private Animator _animator;
     Rigidbody2D _rb;
     float Speed = 250;
     Vector2 Dir;
@@ -37,12 +39,12 @@ public class Personagem : MonoBehaviour
         {
             velocity = Dir * Speed * Time.deltaTime;
         }
-        // Movimento na grade (todas as direções)
+        // Movimento na grade (todas as direï¿½ï¿½es)
         else if (canMoveOnGrade)
         {
             velocity = Dir * Speed * Time.deltaTime;
         }
-        // Movimento normal (só horizontal)
+        // Movimento normal (sï¿½ horizontal)
         else
         {
             velocity.x = Dir.x * Speed * Time.deltaTime;
