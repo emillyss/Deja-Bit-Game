@@ -8,6 +8,9 @@ TagManager:
   - Caixa
   - Inimigo
   - Limite
+  - Wall
+  - Ground
+  - Boss
   layers:
   - Default
   - TransparentFX
