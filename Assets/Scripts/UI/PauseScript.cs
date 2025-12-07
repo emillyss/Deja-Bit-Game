@@ -64,6 +64,6 @@ public class PauseScript : MonoBehaviour
 
     public void ReiniciarFase()
     {
-        SceneManager.LoadScene("MainGame");
+        SceneManager.LoadScene("MainGame2D");
     }
 }

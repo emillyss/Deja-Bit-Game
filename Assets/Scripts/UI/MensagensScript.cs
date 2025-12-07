@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class MensagensScript : MonoBehaviour
 {
+    [SerializeField] TextMeshProUGUI bemVindo;
+    [SerializeField] TextMeshProUGUI bemVindo1;
+    [SerializeField] TextMeshProUGUI bemVindo2;
     [SerializeField] TextMeshProUGUI mensagemIntrodutoria;
     [SerializeField] TextMeshProUGUI mensagemRebobinar;
     [SerializeField] TextMeshProUGUI mensagemEspacamento;
@@ -33,6 +36,9 @@ public class MensagensScript : MonoBehaviour
 
     private void Start()
     {
+        listaDeExibicao.Add(bemVindo);
+        listaDeExibicao.Add(bemVindo1);
+        listaDeExibicao.Add(bemVindo2);
         tempoDeEsperaInicial = Time.time;
     }
 
