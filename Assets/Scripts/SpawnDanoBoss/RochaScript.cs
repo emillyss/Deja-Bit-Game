@@ -13,9 +13,5 @@ public class RochaScript : MonoBehaviour
             BossScript.vida -= dano;
         }
 
-        if (collision.CompareTag("Ground"))
-        {
-            Destroy(gameObject);
-        }
     }
 }
