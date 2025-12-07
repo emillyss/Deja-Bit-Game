@@ -1,28 +1,28 @@
 fileFormatVersion: 2
-guid: 49440e8d01cb6c94082af1afc6b2f137
+guid: e959fdf008b86f5488d0b8b2bf936683
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8913763300413005069
-    second: Jogadores_0
+      213: -2488225393659775667
+    second: "Vil\xE3o_0"
   - first:
-      213: 2897851205364908809
-    second: Jogadores_1
+      213: 461017643471255970
+    second: "Vil\xE3o_1"
   - first:
-      213: 3474603091410121850
-    second: Jogadores_2
+      213: -1295448144278202299
+    second: "Vil\xE3o_2"
   - first:
-      213: 1504255069389554447
-    second: Jogadores_3
+      213: 8518951662141102528
+    second: "Vil\xE3o_3"
   - first:
-      213: 5570578376543174919
-    second: Jogadores_4
+      213: 7619756739661467291
+    second: "Vil\xE3o_4"
   - first:
-      213: -3309707039727602707
-    second: Jogadores_5
+      213: -8558034596127649416
+    second: "Vil\xE3o_5"
   - first:
-      213: -3161766395060447701
-    second: Jogadores_6
+      213: -4673550242295686057
+    second: "Vil\xE3o_6"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -118,13 +118,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Jogadores_0
+      name: "Vil\xE3o_0"
       rect:
         serializedVersion: 2
-        x: 85
-        y: 858
-        width: 114
-        height: 187
+        x: 0
+        y: 0
+        width: 113
+        height: 186
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,20 +133,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d0dd70d9e7c04bb70800000000000000
-      internalID: 8913763300413005069
+      spriteID: d457dc9003c087dd0800000000000000
+      internalID: -2488225393659775667
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jogadores_1
+      name: "Vil\xE3o_1"
       rect:
         serializedVersion: 2
-        x: 244
-        y: 864
+        x: 158
+        y: 5
         width: 114
-        height: 187
+        height: 186
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,20 +155,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 90386bb515c373820800000000000000
-      internalID: 2897851205364908809
+      spriteID: 2a9ba4aaa1dd56600800000000000000
+      internalID: 461017643471255970
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jogadores_2
+      name: "Vil\xE3o_2"
       rect:
         serializedVersion: 2
-        x: 403
-        y: 858
+        x: 317
+        y: 0
         width: 114
-        height: 187
+        height: 186
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,20 +177,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a7479f63a15483030800000000000000
-      internalID: 3474603091410121850
+      spriteID: 548db5fb6c4a50ee0800000000000000
+      internalID: -1295448144278202299
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jogadores_3
+      name: "Vil\xE3o_3"
       rect:
         serializedVersion: 2
-        x: 562
-        y: 858
+        x: 476
+        y: 0
         width: 114
-        height: 187
+        height: 186
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -199,20 +199,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f038b86040030e410800000000000000
-      internalID: 1504255069389554447
+      spriteID: 0c9d4a0c665693670800000000000000
+      internalID: 8518951662141102528
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jogadores_4
+      name: "Vil\xE3o_4"
       rect:
         serializedVersion: 2
-        x: 721
-        y: 858
+        x: 635
+        y: 0
         width: 122
-        height: 187
+        height: 186
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,20 +221,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 701045fe48bae4d40800000000000000
-      internalID: 5570578376543174919
+      spriteID: b9e096e2260deb960800000000000000
+      internalID: 7619756739661467291
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jogadores_5
+      name: "Vil\xE3o_5"
       rect:
         serializedVersion: 2
-        x: 888
-        y: 858
+        x: 802
+        y: 0
         width: 117
-        height: 187
+        height: 186
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -243,20 +243,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: de33d62abfe8112d0800000000000000
-      internalID: -3309707039727602707
+      spriteID: 871de4290e0cb3980800000000000000
+      internalID: -8558034596127649416
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jogadores_6
+      name: "Vil\xE3o_6"
       rect:
         serializedVersion: 2
-        x: 1050
-        y: 858
-        width: 132
-        height: 187
+        x: 964
+        y: 0
+        width: 131
+        height: 186
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -265,8 +265,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b2697a727362f14d0800000000000000
-      internalID: -3161766395060447701
+      spriteID: 75c5600f0d6342fb0800000000000000
+      internalID: -4673550242295686057
       vertices: []
       indices: 
       edges: []
@@ -285,13 +285,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Jogadores_0: 8913763300413005069
-      Jogadores_1: 2897851205364908809
-      Jogadores_2: 3474603091410121850
-      Jogadores_3: 1504255069389554447
-      Jogadores_4: 5570578376543174919
-      Jogadores_5: -3309707039727602707
-      Jogadores_6: -3161766395060447701
+      "Vil\xE3o_0": -2488225393659775667
+      "Vil\xE3o_1": 461017643471255970
+      "Vil\xE3o_2": -1295448144278202299
+      "Vil\xE3o_3": 8518951662141102528
+      "Vil\xE3o_4": 7619756739661467291
+      "Vil\xE3o_5": -8558034596127649416
+      "Vil\xE3o_6": -4673550242295686057
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

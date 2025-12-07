@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 719d1663c277195448399e65471c4fc0
+guid: e93481f2bcbdccc47ab695b578a894ff
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7757150854349383106
-    second: Sprite-002_0
+      213: 8300626847735171348
+    second: Porcentagem_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sprite-002_0
+      name: Porcentagem_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 133
+        y: 175
+        width: 594
+        height: 510
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2c5ec965a9fe6ab60800000000000000
-      internalID: 7757150854349383106
+      spriteID: 4194350b320c13370800000000000000
+      internalID: 8300626847735171348
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Sprite-002_0: 7757150854349383106
+      Porcentagem_0: 8300626847735171348
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
