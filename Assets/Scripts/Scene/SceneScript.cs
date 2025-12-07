@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneScript : MonoBehaviour
 {
-    [SerializeField] string nomeCena = "MainGame";
+    [SerializeField] string nomeCena = "MainGame2D";
     [SerializeField] GameObject telaPause;
     [SerializeField] AudioMixer audioMixer;
     public void Entrar()

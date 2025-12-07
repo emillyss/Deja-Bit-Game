@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class PortaScript : MonoBehaviour
 {
     [SerializeField] BoxCollider2D bloqueio;
+    [SerializeField] string cenaParaCarregar;
     static public int quantidadeInimigosVivos = 1;
 
     void Update()
@@ -20,7 +21,7 @@ public class PortaScript : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            SceneManager.LoadScene("FimDeJogo");
+            SceneManager.LoadScene(cenaParaCarregar);
         }
     }
 }
