@@ -8,6 +8,11 @@ public class BotãoSpawnCaixaScript1 : MonoBehaviour
     [SerializeField] GameObject caixa;
     [SerializeField] Transform posicaoSpawn;
 
+    private void Start()
+    {
+        isPressionado = false;
+    }
+
     void Update()
     {
         if (playerPodeInteragir && !isPressionado && Keyboard.current.eKey.wasPressedThisFrame)

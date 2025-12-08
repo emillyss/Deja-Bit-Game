@@ -6,6 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 public class BotaoAlavancaScript : MonoBehaviour
 {
     [SerializeField] GameObject parede;
+    [SerializeField] GameObject escada;
     [SerializeField] TextMeshProUGUI portaAberta;
     [SerializeField] TextMeshProUGUI portaFechada;
     [SerializeField] float waitTime = 5f;
@@ -16,6 +17,7 @@ public class BotaoAlavancaScript : MonoBehaviour
 
     void Start()
     {
+        escada.SetActive(false);
         animator = GetComponent<Animator>();
     }
 
@@ -37,6 +39,7 @@ public class BotaoAlavancaScript : MonoBehaviour
             PlataformaScript.isAlavancaAtivada = true;
             animator.SetBool("isApertado", true);
             parede.SetActive(false);
+            escada.SetActive(true);
             AudioManager.instance.PlayCaixaDeTexto();
             portaAberta.gameObject.SetActive(true);
             portaFechada.gameObject.SetActive(false);
@@ -52,6 +55,7 @@ public class BotaoAlavancaScript : MonoBehaviour
             PlataformaScript.isAlavancaAtivada = false;
             animator.SetBool("isApertado", false);
             parede.SetActive(true);
+            escada.SetActive(false);
             AudioManager.instance.PlayCaixaDeTexto();
             portaAberta.gameObject.SetActive(false);
             portaFechada.gameObject.SetActive(true);
