@@ -1828,7 +1828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d0a7c899c29db043b78dc192649e097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Scene
-  nomeCena: MainGame
+  nomeCena: MainGame2D
   telaPause: {fileID: 601647964}
   audioMixer: {fileID: 24100000, guid: fcc382b57f21ada419626ef0a934d43a, type: 2}
 --- !u!4 &1639560837

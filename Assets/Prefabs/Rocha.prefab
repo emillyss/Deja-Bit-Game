@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 4052864561845237565}
   - component: {fileID: 388041954733274661}
   - component: {fileID: 3583522512074256507}
-  m_Layer: 0
+  - component: {fileID: 7444853435096035099}
+  m_Layer: 6
   m_Name: Rocha
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,8 +80,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: -1995010777
-  m_SortingLayer: 5
+  m_SortingLayerID: 1617924393
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -169,3 +170,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RochaScript
   dano: 10
+--- !u!114 &7444853435096035099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5976313706751382139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f792b41aeed7e5c019793a3fdbf8a702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SavableObject
+  memoryWeight: 10
+  icon: {fileID: 0}
+  outlineObject: {fileID: 0}

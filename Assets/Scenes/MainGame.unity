@@ -951,6 +951,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314e0287bd52e613184ca5b999b4d81e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Personagem
+  canMoveUp: 0
+  canMoveOnGrade: 0
+  gradeCount: 0
 --- !u!50 &360200451
 Rigidbody2D:
   serializedVersion: 5
@@ -1666,6 +1669,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8b4472ab64c12549b7ef9ab988ce483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIScript
+  bemVindo: {fileID: 0}
+  bemVindo1: {fileID: 0}
+  bemVindo2: {fileID: 0}
   mensagemIntrodutoria: {fileID: 428782061}
   mensagemRebobinar: {fileID: 805821071}
   mensagemEspacamento: {fileID: 1387655960}
@@ -1704,6 +1710,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PauseScript
   telaPause: {fileID: 1447463499}
   audioMixer: {fileID: 24100000, guid: fcc382b57f21ada419626ef0a934d43a, type: 2}
+  cenaTelaInicial: MainGame2D
 --- !u!1 &532194899
 GameObject:
   m_ObjectHideFlags: 0
@@ -2850,6 +2857,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BotaoClicavelScript
   escada: {fileID: 7165925184402141828, guid: c1a79c8d5f93b144a88f04e5af1fef4f, type: 3}
+  chao: {fileID: 0}
   plataforma: {fileID: 7245938316568723792}
   alavanca: {fileID: 8485700241003085084}
   posicaoSpawn: {fileID: 2029472444}
@@ -2944,7 +2952,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1617924393
-  m_SortingLayer: 1
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.4641509, g: 0.2723602, b: 0.2723602, a: 1}
@@ -5460,7 +5468,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1617924393
-  m_SortingLayer: 1
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6769,13 +6777,17 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7495596687320496587, guid: 8f814875b3b960c458b755b540a2968d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1179070444552254057, guid: 8f814875b3b960c458b755b540a2968d, type: 3}
       insertIndex: 3
       addedObject: {fileID: 2076275851}
+    - targetCorrespondingSourceObject: {fileID: 1179070444552254057, guid: 8f814875b3b960c458b755b540a2968d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2076275852}
   m_SourcePrefab: {fileID: 100100000, guid: 8f814875b3b960c458b755b540a2968d, type: 3}
 --- !u!1 &2057796658
 GameObject:
@@ -6940,6 +6952,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.66, y: 0.63}
   m_EdgeRadius: 0
+--- !u!114 &2076275852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076275846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70f486774d144ab4aafdf247a2982a65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PortaEntreNiveis
+  cameraAtual: {fileID: 0}
+  proximaCamera: {fileID: 0}
+  novaPosicaoPlayer: {x: 10, y: 0, z: 0}
+  bloquearAcesso: {fileID: 0}
+  bloqueada: {fileID: 0}
+  portaAcesso: {fileID: 0}
 --- !u!1 &2108117764
 GameObject:
   m_ObjectHideFlags: 0
@@ -7017,7 +7047,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1995010777
-  m_SortingLayer: 2
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8cba6929901eedf0fbb9595e306a6b66, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -7318,7 +7348,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1617924393
-  m_SortingLayer: 1
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 15e8942a92e0a7378b11fc8d4fad4d96, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

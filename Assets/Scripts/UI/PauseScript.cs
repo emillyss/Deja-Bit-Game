@@ -8,6 +8,7 @@ public class PauseScript : MonoBehaviour
     public GameObject telaPause;
     public static bool pause;
     public AudioMixer audioMixer;
+    [SerializeField] string cenaTelaInicial = "MainGame2D";
 
     void Start()
     {
@@ -64,6 +65,6 @@ public class PauseScript : MonoBehaviour
 
     public void ReiniciarFase()
     {
-        SceneManager.LoadScene("MainGame2D");
+        SceneManager.LoadScene(cenaTelaInicial);
     }
 }

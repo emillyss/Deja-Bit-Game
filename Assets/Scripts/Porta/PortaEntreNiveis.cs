@@ -1,13 +1,19 @@
 using Unity.Cinemachine;
 using UnityEngine;
 
-public class PortaEntreMiniFaseScript : MonoBehaviour
+public class PortaEntreNiveis : MonoBehaviour
 {
     [SerializeField] CinemachineCamera cameraAtual;
     [SerializeField] CinemachineCamera proximaCamera;
-    [SerializeField] GameObject trocaCamera;
-    [SerializeField] GameObject parede;
+    [SerializeField] Vector3 novaPosicaoPlayer = Vector3.zero;
+    [SerializeField] GameObject bloquearAcesso;
+    [SerializeField] BoxCollider2D bloqueada;
+    [SerializeField] BoxCollider2D portaAcesso;
     bool isSom;
+        void Start()
+    {
+        bloqueada = GetComponent<BoxCollider2D>();
+    }
 
     void Update()
     {
@@ -18,9 +24,11 @@ public class PortaEntreMiniFaseScript : MonoBehaviour
                 AudioManager.instance.PlayPorta();
                 isSom = true;
             }
+            bloqueada.enabled = false;
         }
         else
         {
+            bloqueada.enabled = true;
             isSom = false;
         }
     }
@@ -32,10 +40,15 @@ public class PortaEntreMiniFaseScript : MonoBehaviour
 
             proximaCamera.gameObject.SetActive(true);
 
+            if (novaPosicaoPlayer != Vector3.zero)
+            {
+                collision.transform.parent.position = novaPosicaoPlayer;
+            }
+
+            bloquearAcesso.SetActive(true);
+            portaAcesso.enabled = false;
+
             MensagensScript.isEspacamento = true;
-            parede.SetActive(true);
-            trocaCamera.SetActive(true);
-            gameObject.SetActive(false);
         }
     }
 }
