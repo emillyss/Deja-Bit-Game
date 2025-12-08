@@ -5,9 +5,9 @@ using static UnityEngine.GraphicsBuffer;
 public class PlataformaScript : MonoBehaviour
 {
     [SerializeField] float speed = 5f;
-    [SerializeField] float waitTime = 2f;
+    [SerializeField] float waitTime = 5f;
     [SerializeField] float moveRadius = 10f;
-    [SerializeField] float deslocamento = 2f;
+    [SerializeField] float deslocamento;
 
     static public bool isAlavancaAtivada = false;
     Vector3 positionAtual;
@@ -18,7 +18,7 @@ public class PlataformaScript : MonoBehaviour
     void Start()
     {
         positionAtual = transform.position;
-        target = new Vector3(transform.position.x, transform.position.z + deslocamento, transform.position.z);
+        target = new Vector3(transform.position.x, deslocamento, transform.position.z);
     }
 
     void Update()
@@ -45,7 +45,6 @@ public class PlataformaScript : MonoBehaviour
 
         if (Vector3.Distance(transform.position, target) < 0.1f)
         {
-            isAlavancaAtivada = false;
             waitTimer = waitTime;
         }
     }

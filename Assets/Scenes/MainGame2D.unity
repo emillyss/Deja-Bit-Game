@@ -2069,6 +2069,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PauseScript
   telaPause: {fileID: 1447463499}
   audioMixer: {fileID: 24100000, guid: fcc382b57f21ada419626ef0a934d43a, type: 2}
+  cenaTelaInicial: MainGame2D
 --- !u!1 &532194899
 GameObject:
   m_ObjectHideFlags: 0
@@ -7355,7 +7356,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -217}
-  m_SizeDelta: {x: 239.3381, y: 49.041}
+  m_SizeDelta: {x: 271.7475, y: 49.041}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1905144942
 MonoBehaviour:

@@ -19,7 +19,7 @@ public class MovimentacaoInimigoScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Bau") || collision.CompareTag("Limite"))
+        if(collision.CompareTag("Bau") || collision.CompareTag("Limite") || collision.CompareTag("Caixa"))
         {
             FlipSprite();
         }
