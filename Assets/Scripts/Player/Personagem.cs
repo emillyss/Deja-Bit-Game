@@ -3,8 +3,6 @@ using UnityEngine.InputSystem;
 
 public class Personagem : MonoBehaviour
 {
-    [SerializeField]
-    private Animator _animator;
     Rigidbody2D _rb;
     float Speed = 250;
     Vector2 Dir;
